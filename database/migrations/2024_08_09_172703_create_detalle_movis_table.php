@@ -13,6 +13,7 @@ return new class extends Migration
     {
         Schema::create('detalle_movis', function (Blueprint $table) {
             $table->id();
+            $table->foreignId('movimiento_id')->constrained('movimientos');
             $table->foreignId('material_id')->constrained('materials');
             $table->integer('cantidad');
             $table->timestamps();

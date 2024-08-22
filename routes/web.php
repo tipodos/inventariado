@@ -3,6 +3,7 @@
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\HerramientaController;
 use App\Http\Controllers\MaterialController;
+use App\Http\Controllers\MovimientoController;
 use App\Http\Controllers\UsuarioController;
 use App\Models\Material;
 use Illuminate\Support\Facades\Route;
@@ -19,7 +20,8 @@ Route::middleware([
     Route::get('/dashboard', function () {
         return view('dashboard');
     })->name('dashboard');
-    Route::get('/movimiento',[UsuarioController::class,'movimiento']);
+    Route::get('/movimiento',[MovimientoController::class,'index'])->name('movimiento.index');
+    Route::post('/movimiento/agregar',[MovimientoController::class,'store'])->name('movimiento.store');
 
     Route::get('/categoria',[CategoryController::class,'index'])->name('categoria.index');
     Route::post('/categoria/agregar',[CategoryController::class,'store'])->name('categoria.store');

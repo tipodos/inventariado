@@ -13,7 +13,7 @@ return new class extends Migration
     {
         Schema::create('movimientos', function (Blueprint $table) {
             $table->id();
-            $table->string('tipo');
+            $table->enum('accion', ['entrada', 'salida']);
             $table->string('nombre');
             $table->decimal('total',10,2);
             $table->timestamps();
