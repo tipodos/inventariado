@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\HerramientaController;
+use App\Http\Controllers\ListaController;
 use App\Http\Controllers\MaterialController;
 use App\Http\Controllers\MovimientoController;
 use App\Http\Controllers\UsuarioController;
@@ -42,6 +43,8 @@ Route::middleware([
     Route::delete('/herramienta/delete/{id}',[HerramientaController::class,'destroy'])->name('herramienta.delete');
 
 
-    Route::get('/lista',[UsuarioController::class,'lista']);
+    Route::get('/lista',[ListaController::class,'index'])->name('lista.index');
+    Route::get('/lista/show/{id}',[ListaController::class,'show'])->name('lista.show');
+
     Route::get('/usuario',[UsuarioController::class,'usuario']);
 });

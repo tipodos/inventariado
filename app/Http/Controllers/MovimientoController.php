@@ -34,15 +34,17 @@ class MovimientoController extends Controller
      * Store a newly created resource in storage.
      */
     public function store(Request $request)
-    {
+    { 
+        $material = $request->input('material');
+        $cantidades = $request->input('cantidad');
+        $accion = $request->input('accion');
+
         $movi= new movimiento();
+        $movi->accion = $accion;
         $movi->nombre=$request->input('nombre');
         $movi->total=$request->input('total_pagar');
         $movi->save();
 
-        $material = $request->input('material');
-        $cantidades = $request->input('cantidad');
-        $accion = $request->input('accion');
 
         foreach ($material as $key => $material_id) {
             $detalle = new Detalle_movi();
@@ -55,10 +57,13 @@ class MovimientoController extends Controller
             
             if($accion == 'entrada'){
                 $material->cantidad += $cantidades[$key];
+                
             }elseif($accion == 'salida'){
-                $material->cantidad -=$cantidades[$key]; 
+                $material->cantidad -=$cantidades[$key];
+                
             }
             $material->save();
+            
         } 
         
         return redirect()->route('movimiento.index')->with('success', 'Personal created successfully.');
