@@ -28,7 +28,7 @@
                             <td>{{ $item->accion }}</td>
                             <td>{{ $item->total }}</td>
                             <td>
-                                <a href="{{route('lista.show',['id'=>$item->id])}} " class="btn btn-warning">ver</a>
+                                <a href="{{route('lista.show',['id'=>$item->id])}}" class="btn btn-warning">ver</a>
                             </td>
                         </tr>
                     @endforeach

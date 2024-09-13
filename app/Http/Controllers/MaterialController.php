@@ -11,12 +11,20 @@ class MaterialController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function index(Request $request)
     {
-        $material = Material::all();
+        $buscar = $request->get('buscar');
+        $material = Material::where('nombre', 'like', "%$buscar%")->orWhereHas(
+            'categoria', function($query) use ($buscar){
+                $query->where('nombre', 'like', "%$buscar%");
+            }
+        )->get();
+        $precioTotal = $material->sum(function($materiales){
+            return $materiales->cantidad * $materiales->precio;
+        });
         $categoria = Category::all();
 
-        return view('material/material', compact('material','categoria'));
+        return view('material/material', compact('material','categoria', 'precioTotal'));
     }
 
     /**
