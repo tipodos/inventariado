@@ -308,7 +308,7 @@ return [
         // Sidebar items:
         [
             'type' => 'sidebar-menu-search',
-            'text' => 'search',
+            'text' => 'Buscar',
         ],
         [
             'text' => 'blog',
@@ -316,10 +316,10 @@ return [
             'can' => 'manage-blog',
         ],
         [
-            'text' => 'movimiento',
+            'text' => 'Movimiento',
             'url' => 'movimiento',
             'icon' => 'far fa-fw fa-file',
-            'label' => 4,
+            'label' => 1,
             'label_color' => 'success',
         ],
         ['header' => 'Más ajustes'],
@@ -329,23 +329,23 @@ return [
             'icon' => 'fas fa-fw fa-user',
         ],
         [
-            'text' => 'Herraientas',
+            'text' => 'Herramientas',
             'url' => 'herramienta',
             'icon' => 'fas fa-fw fa-lock',
         ],
         [
-            'text' => 'Categoria',
+            'text' => 'Categorias',
             'url' => 'categoria',
             'icon' => 'fas fa-fw fa-lock',
         ],
         [
-            'text' => 'Lista',
+            'text' => 'Listas',
             'url' => 'lista',
             'icon' => 'fas fa-fw fa-lock',
         ],
         [
             'text' => 'Usuarios',
-            'url' => 'usuario',
+            'url' => '',
             'icon' => 'fas fa-fw fa-lock',
         ],
         ['header' => 'labels'],

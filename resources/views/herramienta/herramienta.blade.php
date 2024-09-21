@@ -8,7 +8,7 @@
 
 @section('content')
 <div class="container">
-    <p>Crear Herramienta</p>
+    <h2>Crear Herramienta</h2>
     <form action="{{ route('herramienta.store') }}" method="post" class="mb-4">
         @csrf
         <div class="form-group">

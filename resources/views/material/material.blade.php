@@ -3,12 +3,12 @@
 @section('title', 'Dashboard')
 
 @section('content_header')
-    <h1>Dashboard</h1>
+    <h1>Material</h1>
 @stop
 
 @section('content')
 <div class="container">
-    <p>Materia</p>
+    <h2>Crear material</h2>
     <form action="{{ route('material.store') }}" method="post" class="mb-4">
         @csrf
         <div class="form-group mb-3">

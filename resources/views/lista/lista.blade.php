@@ -3,7 +3,7 @@
 @section('title', 'Dashboard')
 
 @section('content_header')
-    <h1>Dashboard</h1>
+    <h1>lista</h1>
 @stop
 
 @section('content')
@@ -11,7 +11,7 @@
 <div class="col-md-8">
     <div class="table-wrapper">
         <h2>Lista de Personal</h2>
-            <p>No se encontraron registros de personal.</p>
+            
             <table class="table table-striped">
                 <thead>
                     <tr>

@@ -42,7 +42,7 @@ class MovimientoController extends Controller
         $movi= new movimiento();
         $movi->accion = $accion;
         $movi->nombre=$request->input('nombre');
-        $movi->total=$request->input('total_pagar');
+        $movi->total = $request->input('total_pagar', 0);
         $movi->save();
 
 

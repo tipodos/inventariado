@@ -8,7 +8,7 @@
 
 @section('content')
 <div class="container">
-    <p>Crear categoría</p>
+    <h2>Crear categoría</h2>
     <form action="{{ route('categoria.store') }}" method="post" class="mb-4">
         @csrf
         <div class="form-group">

@@ -3,13 +3,13 @@
 @section('title', 'Dashboard')
 
 @section('content_header')
-    <h1>Dashboard</h1>
+    <h1>movimiento</h1>
 @stop
 
 @section('content')
 <div class="container">
     <div class="form-wrapper">
-        <h2>Agregar Personal</h2>
+        <h2>Agregar movimiento</h2>
         <form action="{{route('movimiento.store')}}" method="POST">
             @csrf
             <div class="form-group">
@@ -23,7 +23,7 @@
                 <div class="form-group row">
                     <div class="col-md-2">
                         <label for="categoria[]">Categoria</label>
-                        <select name="categoria[]" class="form-control select2 categoria-select" id="categoria-select">
+                        <select name="categoria[]" class="form-control select2 categoria-select" id="categoria-select" required>
                             <option value="">Seleccione una categoría</option>
                             @foreach ($categoria as $cate)
                                 <option value="{{ $cate->id }}">
@@ -34,7 +34,7 @@
                     </div>
                     <div class="col-md-3">
                         <label for="material[]">Material</label>
-                        <select name="material[]" class="form-control select2 material-select" id="material-select">
+                        <select name="material[]" class="form-control select2 material-select" id="material-select" required>
                             <option value="">Seleccione una material</option>
                             @foreach ($material as $mate)
                                 <option value="{{ $mate->id }}" data-categoria-id="{{ $mate->categoria_id }}" data-price="{{ $mate->precio }}">
@@ -45,14 +45,14 @@
                     </div>
                     <div class="col-md-2">
                         <label for="cantidad[]">Cantidad</label>
-                        <input type="number" name="cantidad[]" class="form-control cantidad" value="1" min="1" required>
+                        <input type="number" name="cantidad[]" class="form-control cantidad" value="0" min="0" required>
                     </div>
                     <div class="col-md-3">
                         <label for="total[]">Total</label>
-                        <input type="text" name="total[]" class="form-control total" value="0.00" readonly>
+                        <input type="text" name="total[]" class="form-control total" value="0.00" readonly required>
                     </div>
                     <div class="col-md-1">
-                        <button type="button" class="btn btn-danger remove-row mt-4">-</button>
+                        <button type="button" class="btn btn-danger remove-row mt-4">borrar</button>
                     </div>
                 </div>
             </div>
@@ -60,7 +60,7 @@
             <hr>
             <div class="form-group">
                 <label for="total-pagar">Total a Pagar</label>
-                <input type="text" name="total_pagar" class="form-control" id="total-pagar" readonly>
+                <input type="text" name="total_pagar" class="form-control" id="total-pagar" readonly required>
             </div>
             <input type="hidden" name="accion" id="accion" value="entrada">
             <button type="submit" class="btn btn-primary" onclick="document.getElementById('accion').value='entrada';">Entrada</button>
@@ -87,8 +87,9 @@
     });
     $(document).on('change', '.material-select, .cantidad', function() {
     const $row = $(this).closest('.row');
-    const price = $row.find('.material-select option:selected').data('price');
-    const quantity = $row.find('.cantidad').val();
+    const price =  parseFloat($row.find('.material-select option:selected').data('price')) || 0;
+    const quantity = parseInt($row.find('.cantidad').val()) || 0;
+
     const total = price * quantity;
     $row.find('.total').val(total.toFixed(2));
     
@@ -98,7 +99,7 @@
 function updateTotalPagar() {
     let totalPagar = 0;
     $('.total').each(function() {
-        totalPagar += parseFloat($(this).val());
+        totalPagar += parseFloat($(this).val()) || 0;
     });
     $('#total-pagar').val(totalPagar.toFixed(2));
 }
